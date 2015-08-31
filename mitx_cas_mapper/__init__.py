@@ -22,6 +22,7 @@ def populate_user(user, authentication_response):
 
         if attr.find(CAS + 'USER_NAME', NSMAP) is not None:
             user.first_name = attr.find(CAS + 'USER_NAME', NSMAP).text
+            user.name = user.first_name
 
         if attr.find(CAS + 'sn', NSMAP) is not None:
             user.last_name = attr.find(CAS + 'sn', NSMAP).text
