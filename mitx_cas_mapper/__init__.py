@@ -20,12 +20,12 @@ def populate_user(user, authentication_response):
         if attr.find(CAS + 'is_superuser', NSMAP) is not None:
             user.is_superuser = attr.find(CAS + 'is_superuser', NSMAP).text.upper() == 'TRUE'
 
-        if attr.find(CAS + 'givenName', NSMAP) is not None:
-            user.first_name = attr.find(CAS + 'givenName', NSMAP).text
+        if attr.find(CAS + 'USER_NAME', NSMAP) is not None:
+            user.first_name = attr.find(CAS + 'USER_NAME', NSMAP).text
 
         if attr.find(CAS + 'sn', NSMAP) is not None:
             user.last_name = attr.find(CAS + 'sn', NSMAP).text
 
-        if attr.find(CAS + 'email', NSMAP) is not None:
-            user.email = attr.find(CAS + 'email', NSMAP).text
+        if attr.find(CAS + 'EMAIL', NSMAP) is not None:
+            user.email = attr.find(CAS + 'EMAIL', NSMAP).text
     pass
