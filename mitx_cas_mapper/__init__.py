@@ -28,29 +28,5 @@ def populate_user(user, authentication_response):
 
         if attr.find(CAS + 'EMAIL', NSMAP) is not None:
             user.email = attr.find(CAS + 'EMAIL', NSMAP).text
-            
-        # Here we handle things that go into UserProfile instead.
-
-        # This is a dirty hack and you shouldn't do that.
-        # However, I don't think it's going to work when imported outside of the function body.
-
-        from student.models import UserProfile
-
-        # We don't do that on old edX because it's so bloody fragile.
-        # On the new edX, logging in through CAS will also mean an unusable
-        # password inside.
-        user.set_unusable_password()
-        user.save()
-        
-        # If the user doesn't yet have a profile, it means it's a new one and we need to create it a profile.
-        # but we need to save the user first.
-        user_profile, created = UserProfile.objects.get_or_create(user=user, defaults={'name':user.username})
-
-        # There should be more variables, but let's settle on the actual model first.
-        full_name = attr.find(CAS + 'fullName', NSMAP)
-        if full_name is not None:
-            user_profile.name = full_name.text or ''
-            
-        user_profile.save()
         
     pass
