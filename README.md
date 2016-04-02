@@ -1,4 +1,4 @@
-neusoft_cas_mapper
+edustack_cas_mapper
 ===============
 
-Simple module for mapping cas attributes to django user models based on our
+Simple module for mapping cas attributes to django user models 
